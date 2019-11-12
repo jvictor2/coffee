@@ -81,6 +81,14 @@
             "browserTarget": "coffee:build"
           }
         },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://jvictor2.github.io/coffee/",
+            "name": "Coffee",
+            "email": "jvictor2@gmail.com"
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
