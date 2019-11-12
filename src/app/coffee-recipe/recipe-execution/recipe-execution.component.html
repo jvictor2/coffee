@@ -1,0 +1,14 @@
+<span>{{ recipe.steps.length }} steps to add boiling water:</span>
+<mat-chip-list class="steps" [selectable]="false">
+  <mat-chip
+    *ngFor="let step of recipe.steps"
+    [ngClass]="{
+      processing: step.step === currentStep,
+      scheduled: step.step > currentStep,
+      done: step.step < currentStep
+    }"
+    >{{ step.acc }} ml
+  </mat-chip>
+</mat-chip-list>
+<br />
+<m3j-stopwatch (counterEvent)="onCounterChange($event)"></m3j-stopwatch>

@@ -1,0 +1,40 @@
+<mat-slider
+  (valueChange)="onChangeCupSlider($event)"
+  [max]="60"
+  [min]="4"
+  [step]="8"
+  [value]="coffeeGround"
+></mat-slider>
+
+<div class="recipe-details">
+  <div class="detail">
+    <span class="value">{{ coffeeCups }}</span>
+    <span class="unit">{{ coffeeCupSize }}</span>
+  </div>
+  <div class="detail">
+    <span class="value">{{ recipe.coffeeGround }}g</span>
+    <span class="unit">coffee ground</span>
+  </div>
+  <div class="detail">
+    <span class="value">{{ recipe.totalBoilingWater }}ml</span>
+    <span class="unit">boiling water</span>
+  </div>
+  <div class="detail">
+    <span class="value">{{ recipe.steps.length }}</span>
+    <span class="unit">pours</span>
+  </div>
+</div>
+<br />
+
+<!-- <mat-chip-list class="steps" [selectable]="false"> -->
+<!-- <mat-chip
+    *ngFor="let step of recipe.steps"
+    [ngClass]="{
+      processing: step.currentStatus(counter) === 'processing',
+      scheduled: step.currentStatus(counter) === 'scheduled',
+      done: step.currentStatus(counter) === 'done'
+    }"
+    >{{ step.acc }}ml
+  </mat-chip> -->
+<!-- <mat-chip *ngFor="let step of recipe.steps">{{ step.acc }}ml </mat-chip>
+</mat-chip-list> -->

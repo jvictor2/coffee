@@ -1,0 +1,60 @@
+.mat-slider-horizontal {
+  min-width: 100%;
+}
+
+.recipe-details {
+  display: flex;
+  justify-content: space-evenly;
+  color: black;
+  width: 100%;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #333333;
+
+  .value {
+    font-size: x-large;
+    font-weight: bolder;
+    line-height: 22px;
+  }
+
+  .unit {
+    font-size: 11px;
+  }
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+
+  .processing {
+    // background-color: #492201;
+    // color: white;
+    animation: blinker 2s linear infinite;
+  }
+
+  .scheduled {
+    // background-color: #492201;
+    // color: white;
+    // background-color: rgb(196, 196, 196);
+    opacity: 0.5;
+  }
+
+  .done {
+    // background-color: #3e1c00;
+    // color: white;
+  }
+
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+.mat-chip-list-wrapper {
+  justify-content: center !important;
+}
