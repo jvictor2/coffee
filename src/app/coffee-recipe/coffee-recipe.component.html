@@ -1,18 +1,14 @@
 <div class="recipe">
-
   <mat-card>
-    <mat-card-title>How much coffee, sir?</mat-card-title>
-  <mat-card-content>
-    <m3j-recipe-selection
-      (recipeEvent)="onRecipeChange($event)"
-      ></m3j-recipe-selection>
-  </mat-card-content>
-</mat-card>
-<p></p>
-<mat-card>
-  <mat-card-title>Let's do it!</mat-card-title>
-  <mat-card-content>
-    <m3j-recipe-execution [recipe]="recipe"></m3j-recipe-execution>
-  </mat-card-content>
-</mat-card>
+    <mat-card-title>Coffee Helper</mat-card-title>
+    <mat-card-subtitle>4:6 method by Tetsu Kasuya</mat-card-subtitle>
+    <mat-card-content>
+      <m3j-recipe-selection
+        (recipeEvent)="onRecipeChange($event)"
+        [isStopwatchRunning]="isStopwatchRunning"
+        ></m3j-recipe-selection>
+        <p></p>
+        <m3j-recipe-execution [recipe]="recipe" (isRunningEvent)="onExecutionStatusChange($event)" ></m3j-recipe-execution>
+    </mat-card-content>
+  </mat-card>
 </div>

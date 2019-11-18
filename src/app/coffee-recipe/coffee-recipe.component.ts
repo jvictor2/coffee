@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../core';
 
 @Component({
@@ -10,11 +10,17 @@ export class CoffeeRecipeComponent implements OnInit {
   constructor() {}
 
   recipe: Recipe;
+  isStopwatchRunning = false;
 
   ngOnInit() {}
 
   onRecipeChange(recipe: Recipe) {
     console.log('new recipe received');
     this.recipe = recipe;
+  }
+
+  onExecutionStatusChange(isRunning: boolean) {
+    console.log('recipe', isRunning);
+    this.isStopwatchRunning = isRunning;
   }
 }

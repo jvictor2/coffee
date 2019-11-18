@@ -50,7 +50,6 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private updateTimer(cmd: 'start' | 'stop' | 'reset') {
     if (cmd === 'start' && !this.isRunning) {
-      console.log('starting timer');
       this.isRunning = true;
       const startTime = DateTime.local().toMillis() - this.counter;
       this.timerRef = setInterval(() => {
@@ -62,7 +61,6 @@ export class TimerComponent implements OnInit, OnDestroy {
     }
 
     if (cmd === 'stop' && this.isRunning) {
-      console.log('stopping timer');
       this.isRunning = false;
       clearInterval(this.timerRef);
       return;

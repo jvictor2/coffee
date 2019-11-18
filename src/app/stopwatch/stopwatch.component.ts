@@ -26,8 +26,12 @@ export class StopwatchComponent implements OnInit {
   progressBarMode = 'buffer';
 
   timerCommand: Subject<string> = new Subject();
+
   @Output()
   counterEvent: EventEmitter<number> = new EventEmitter();
+
+  @Output()
+  isRunningEvent: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {}
 
@@ -46,6 +50,12 @@ export class StopwatchComponent implements OnInit {
 
   onButtonClick(cmd: 'start' | 'stop' | 'reset') {
     this.timerCommand.next(cmd);
+    this.isRunningEvent.emit(['start', 'stop'].includes(cmd) ? true : false);
+    if (cmd === 'reset') {
+      this.progressBar = 0;
+      this.progressBarBuffer = 0;
+      this.counter = 0;
+    }
   }
 
   private getBufferTime(progress: number) {

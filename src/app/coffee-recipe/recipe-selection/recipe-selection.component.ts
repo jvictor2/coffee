@@ -1,5 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import {round} from 'lodash';
+
 import { RecipeService, Recipe, RecipeMethod } from '../../core';
+
+const COFFEE_GROUND_X_WATER_FACTOR = 15;
+const CUP_SIZE = 180; //
 
 @Component({
   selector: 'm3j-recipe-selection',
@@ -7,48 +12,89 @@ import { RecipeService, Recipe, RecipeMethod } from '../../core';
   styleUrls: ['./recipe-selection.component.scss']
 })
 export class RecipeSelectionComponent implements OnInit {
-  private static INITIAL_COFFEE_GROUND = 4; // 4g produces 60 ml
+  @Input()
+  isStopwatchRunning = false;
 
   @Output()
   recipeEvent: EventEmitter<Recipe> = new EventEmitter();
 
+  cupSize: number = CUP_SIZE;
+
   coffeeGround: number;
   coffeeCups: number;
-  coffeeCupSize: string;
+  boilingWater: number;
   recipe: Recipe;
+  acidityAndSweetness: 'balanced' | 'sweet' | 'acid' = 'balanced';
+  strengh: 'balanced' | 'higher' | 'lower' = 'balanced';
 
   constructor(private readonly recipeService: RecipeService) {}
 
   ngOnInit() {
-    this.coffeeGround = RecipeSelectionComponent.INITIAL_COFFEE_GROUND;
-    this.coffeeCups = 1;
-    this.coffeeCupSize = 'small cup';
-
-    this.recipe = this.recipeService.calculateSteps({
-      method: RecipeMethod.V60_4_6,
-      coffeeGround: this.coffeeGround
-    });
-    this.recipeEvent.emit(this.recipe);
-  }
-
-  onChangeCupSlider(val: number) {
-    this.coffeeGround = val;
-    this.recipe = this.recipeService.calculateSteps({
-      method: RecipeMethod.V60_4_6,
-      coffeeGround: this.coffeeGround
-    });
-    const { cups, size } = this.calculateCups(this.recipe.totalBoilingWater);
+    const {coffeeGround, boilingWater, cups} = this.recipeUpdate();
+    this.coffeeGround = coffeeGround;
     this.coffeeCups = cups;
-    this.coffeeCupSize = size;
+    this.boilingWater = boilingWater;
+
+    this.recipe = this.recipeService.calculateSteps({
+      method: RecipeMethod.V60_4_6,
+      coffeeGround: this.coffeeGround
+    });
     this.recipeEvent.emit(this.recipe);
   }
 
-  onRecipeChange() {}
-
-  private calculateCups(ml: number): { cups: number; size: string } {
-    if (ml <= 60) {
-      return { cups: 1, size: 'small' };
-    }
-    return { cups: Math.round(ml / 240), size: 'cups' };
+  onChangeCoffeeGround(val: any) {
+    this.onRecipeChange(round(val.target.value), undefined, undefined);
   }
+
+  onChangeBoilingWater(val: any) {
+    this.onRecipeChange(undefined, round(val.target.value), undefined);
+  }
+
+  onChangeCups(val: any) {
+    this.onRecipeChange(undefined, undefined, round(val.target.value, 1));
+  }
+
+  // tslint:disable-next-line: variable-name
+  private onRecipeChange(_coffeeGround?: number, _boilingWater?: number, _cups?: number) {
+    const {coffeeGround, boilingWater, cups} = this.recipeUpdate(_coffeeGround, _boilingWater, _cups);
+    this.coffeeCups = cups;
+    this.coffeeGround = coffeeGround;
+    this.boilingWater = boilingWater;
+
+    this.recipe = this.recipeService.calculateSteps({
+      method: RecipeMethod.V60_4_6,
+      coffeeGround: this.coffeeGround
+    });
+    this.recipeEvent.emit(this.recipe);
+  }
+
+  private recipeUpdate(
+    coffeeGround?: number,
+    boilingWater?: number,
+    cups?: number,
+  ): { cups: number; coffeeGround: number; boilingWater: number } {
+    if (coffeeGround != null) {
+      return {
+        coffeeGround,
+        boilingWater: round(coffeeGround * COFFEE_GROUND_X_WATER_FACTOR),
+        cups: round((coffeeGround * COFFEE_GROUND_X_WATER_FACTOR) / CUP_SIZE, 1),
+      };
+    }
+    if (boilingWater != null) {
+      return {
+        coffeeGround: round(boilingWater / COFFEE_GROUND_X_WATER_FACTOR),
+        boilingWater,
+        cups: round(boilingWater / CUP_SIZE, 1),
+      };
+    }
+    if (cups != null) {
+      return {
+        coffeeGround: round((cups * CUP_SIZE) / COFFEE_GROUND_X_WATER_FACTOR),
+        boilingWater: round(cups * CUP_SIZE),
+        cups,
+      };
+    }
+    return this.recipeUpdate(8); // defaults to 8g
+  }
+
 }

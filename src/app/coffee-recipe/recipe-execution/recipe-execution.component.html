@@ -1,5 +1,16 @@
-<span>{{ recipe.steps.length }} steps to add boiling water:</span>
-<mat-chip-list class="steps" [selectable]="false">
+<h3>Get ready</h3>
+<p>
+  <span>Your coffee will be ready in <strong>{{ totalTime }}</strong> and requires <strong>{{ recipe.steps.length }} pours</strong>.</span>
+</p>
+<p>
+  <li *ngFor="let step of formattedSteps; let i=index">
+    <strong>{{ step.acc }}ml</strong> at <strong>{{ step.time }}</strong>
+  </li>
+</p>
+<p>
+  <span>Click start when you are ready. The stopwatch will notify you when to pour boiling water.</span>
+</p>
+<!-- <mat-chip-list class="steps" [selectable]="false">
   <mat-chip
     *ngFor="let step of recipe.steps"
     [ngClass]="{
@@ -9,6 +20,7 @@
     }"
     >{{ step.acc }} ml
   </mat-chip>
-</mat-chip-list>
+</mat-chip-list> -->
+
 <br />
-<m3j-stopwatch (counterEvent)="onCounterChange($event)"></m3j-stopwatch>
+<m3j-stopwatch (counterEvent)="onCounterChange($event)" (isRunningEvent)="onIsRunningChange($event)"></m3j-stopwatch>

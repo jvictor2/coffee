@@ -1,6 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {DateTime} from 'luxon';
+
 import { Recipe } from '../../core';
-import { Subject } from 'rxjs';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'm3j-recipe-execution',
@@ -11,21 +13,42 @@ export class RecipeExecutionComponent implements OnInit {
   @Input()
   recipe: Recipe;
 
-  currentStep: number;
+  @Output()
+  isRunningEvent: EventEmitter<boolean> = new EventEmitter();
 
-  // recipe: Recipe;
-  constructor() {}
+  currentStep: number;
+  totalTime: string;
+  formattedSteps: Array<{acc: number, time: string}> = [];
+  executedSteps: Array<number> = [];
+
+  constructor(private snackBar: MatSnackBar) {}
 
   ngOnInit() {
+    const dur = DateTime.fromMillis(this.recipe.totalTime);
+    this.totalTime = `${dur.minute} minutes ${dur.second} seconds`;
+    this.formattedSteps = this.humanizeSteps(this.recipe);
     this.currentStep = 1;
-    console.log('execution', this.recipe);
   }
 
   onCounterChange(counter: number) {
     for (const step of this.recipe.steps) {
-      if (step.startsAt <= counter && step.endsAt > counter) {
+      const shouldBeRunning = step.startsAt <= counter && step.endsAt > counter;
+      if (shouldBeRunning && !this.executedSteps.includes(step.step)) {
+        this.executedSteps.push(step.step);
         this.currentStep = step.step;
+        this.snackBar.open(`Pour ${step.add}ml (total ${step.acc}ml)`, 'OK', {duration: 10 * 1000, });
       }
     }
+  }
+
+  onIsRunningChange(clockRunning: boolean) {
+    this.isRunningEvent.emit(clockRunning);
+  }
+
+  private humanizeSteps(recipe: Recipe) {
+    return recipe.steps.map(step => {
+      const moment = DateTime.fromMillis(step.startsAt);
+      return {acc: step.acc, time: `${moment.minute + 'm '} ${moment.second}s`};
+    });
   }
 }

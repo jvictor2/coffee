@@ -5,13 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatInputModule } from '@angular/material';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { StopwatchComponent } from './stopwatch/stopwatch.component';
@@ -30,18 +33,21 @@ import { RecipeExecutionComponent } from './coffee-recipe/recipe-execution/recip
     RecipeExecutionComponent
   ],
   imports: [
-    BrowserModule,
     BrowserAnimationsModule,
+    BrowserModule,
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
+    MatChipsModule,
     MatDividerModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatIconModule,
     MatInputModule,
     MatProgressBarModule,
+    MatSelectModule,
     MatSliderModule,
-    MatChipsModule,
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

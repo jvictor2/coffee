@@ -1,40 +1,43 @@
-<mat-slider
-  (valueChange)="onChangeCupSlider($event)"
-  [max]="60"
-  [min]="4"
-  [step]="8"
-  [value]="coffeeGround"
-></mat-slider>
+<mat-grid-list [cols]="3">
+  <h3>Select your preferences</h3>
+  <mat-grid-tile>
+      <mat-form-field class="input-number">
+        <input matInput type="number" value="{{ coffeeGround }}" placeholder="Coffee Ground" min="1" (change)="onChangeCoffeeGround($event)" [disabled]="isStopwatchRunning">
+        <span matSuffix>g</span>
+      </mat-form-field>
+  </mat-grid-tile>
 
-<div class="recipe-details">
-  <div class="detail">
-    <span class="value">{{ coffeeCups }}</span>
-    <span class="unit">{{ coffeeCupSize }}</span>
-  </div>
-  <div class="detail">
-    <span class="value">{{ recipe.coffeeGround }}g</span>
-    <span class="unit">coffee ground</span>
-  </div>
-  <div class="detail">
-    <span class="value">{{ recipe.totalBoilingWater }}ml</span>
-    <span class="unit">boiling water</span>
-  </div>
-  <div class="detail">
-    <span class="value">{{ recipe.steps.length }}</span>
-    <span class="unit">pours</span>
-  </div>
-</div>
-<br />
+  <mat-grid-tile>
+    <mat-form-field class="input-number">
+      <input matInput type="number" value="{{ boilingWater }}" placeholder="Boiling Water" min="15" (change)="onChangeBoilingWater($event)" [disabled]="isStopwatchRunning">
+      <span matSuffix>ml</span>
+    </mat-form-field>
+  </mat-grid-tile>
 
-<!-- <mat-chip-list class="steps" [selectable]="false"> -->
-<!-- <mat-chip
-    *ngFor="let step of recipe.steps"
-    [ngClass]="{
-      processing: step.currentStatus(counter) === 'processing',
-      scheduled: step.currentStatus(counter) === 'scheduled',
-      done: step.currentStatus(counter) === 'done'
-    }"
-    >{{ step.acc }}ml
-  </mat-chip> -->
-<!-- <mat-chip *ngFor="let step of recipe.steps">{{ step.acc }}ml </mat-chip>
-</mat-chip-list> -->
+  <mat-grid-tile>
+    <mat-form-field class="input-number">
+      <input matInput type="number" value="{{ coffeeCups }}" placeholder="Cups" min="0.1" (change)="onChangeCups($event)" [disabled]="isStopwatchRunning">
+      <mat-hint align="start"><strong>1 cup = 180ml</strong> </mat-hint>
+    </mat-form-field>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<mat-grid-list [cols]="3">
+  <mat-form-field class="input-select">
+    <mat-label>Acidity and Sweetness</mat-label>
+    <mat-select [(value)]="acidityAndSweetness" [disabled]="isStopwatchRunning">
+      <mat-option value="balanced">Balanced</mat-option>
+      <mat-option value="acid" [disabled]="true">+Acidity</mat-option>
+      <mat-option value="sweet" [disabled]="true">+Sweetness</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-icon></mat-icon>
+  <mat-form-field class="input-select">
+      <mat-label>Strength</mat-label>
+      <mat-select [(value)]="acidityAndSweetness" [disabled]="isStopwatchRunning">
+        <mat-option value="balanced">Balanced</mat-option>
+        <mat-option value="lower" [disabled]="true">Lower</mat-option>
+        <mat-option value="higher" [disabled]="true">Higher</mat-option>
+      </mat-select>
+    </mat-form-field>
+</mat-grid-list>
