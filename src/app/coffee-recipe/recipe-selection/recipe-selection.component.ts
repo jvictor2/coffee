@@ -66,6 +66,7 @@ export class RecipeSelectionComponent implements OnInit {
       coffeeGround: this.coffeeGround
     });
     this.recipeEvent.emit(this.recipe);
+    console.log('selection', this.recipe);
   }
 
   private recipeUpdate(

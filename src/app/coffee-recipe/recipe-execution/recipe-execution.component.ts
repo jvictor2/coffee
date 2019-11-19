@@ -10,8 +10,17 @@ import { MatSnackBar } from '@angular/material';
   styleUrls: ['./recipe-execution.component.scss']
 })
 export class RecipeExecutionComponent implements OnInit {
-  @Input()
-  recipe: Recipe;
+
+  // tslint:disable-next-line: variable-name
+  _recipe: Recipe;
+  @Input() set recipe(r: Recipe) {
+    this._recipe = r;
+    this.formattedSteps = this.humanizeSteps(r);
+  }
+  get recipe() {
+    return this._recipe;
+  }
+
 
   @Output()
   isRunningEvent: EventEmitter<boolean> = new EventEmitter();
@@ -36,13 +45,14 @@ export class RecipeExecutionComponent implements OnInit {
       if (shouldBeRunning && !this.executedSteps.includes(step.step)) {
         this.executedSteps.push(step.step);
         this.currentStep = step.step;
-        this.snackBar.open(`Pour ${step.add}ml (total ${step.acc}ml)`, 'OK', {duration: 10 * 1000, });
+        this.snackBar.open(`Pour ${step.add}ml (total ${step.acc}ml)`, 'OK', {duration: 10 * 1000});
       }
     }
   }
 
   onIsRunningChange(clockRunning: boolean) {
     this.isRunningEvent.emit(clockRunning);
+    console.log('execution', this.recipe);
   }
 
   private humanizeSteps(recipe: Recipe) {

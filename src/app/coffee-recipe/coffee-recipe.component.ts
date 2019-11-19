@@ -15,12 +15,11 @@ export class CoffeeRecipeComponent implements OnInit {
   ngOnInit() {}
 
   onRecipeChange(recipe: Recipe) {
-    console.log('new recipe received');
     this.recipe = recipe;
+    console.log('parent', this.recipe.coffeeGround)
   }
 
   onExecutionStatusChange(isRunning: boolean) {
-    console.log('recipe', isRunning);
     this.isStopwatchRunning = isRunning;
   }
 }
