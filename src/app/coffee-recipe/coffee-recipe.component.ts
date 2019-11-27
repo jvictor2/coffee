@@ -16,7 +16,6 @@ export class CoffeeRecipeComponent implements OnInit {
 
   onRecipeChange(recipe: Recipe) {
     this.recipe = recipe;
-    console.log('parent', this.recipe.coffeeGround)
   }
 
   onExecutionStatusChange(isRunning: boolean) {

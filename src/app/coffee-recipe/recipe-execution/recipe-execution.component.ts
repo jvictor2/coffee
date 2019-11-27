@@ -52,7 +52,6 @@ export class RecipeExecutionComponent implements OnInit {
 
   onIsRunningChange(clockRunning: boolean) {
     this.isRunningEvent.emit(clockRunning);
-    console.log('execution', this.recipe);
   }
 
   private humanizeSteps(recipe: Recipe) {

@@ -1,3 +1,4 @@
+
 <mat-grid-list [cols]="3">
   <h3>Select your preferences</h3>
   <mat-grid-tile>
@@ -21,8 +22,26 @@
     </mat-form-field>
   </mat-grid-tile>
 </mat-grid-list>
-
 <!--
+<div>
+  <h3>Select your preferences</h3>
+  <div class="preferences">
+    <mat-form-field class="input-number">
+      <input matInput type="number" value="{{ coffeeGround }}" placeholder="Coffee Ground" min="1" (change)="onChangeCoffeeGround($event)" [disabled]="isStopwatchRunning">
+      <span matSuffix>g</span>
+    </mat-form-field>
+
+    <mat-form-field class="input-number">
+      <input matInput type="number" value="{{ boilingWater }}" placeholder="Boiling Water" min="15" (change)="onChangeBoilingWater($event)" [disabled]="isStopwatchRunning">
+      <span matSuffix>ml</span>
+    </mat-form-field>
+
+    <mat-form-field class="input-number">
+      <input matInput type="number" value="{{ coffeeCups }}" placeholder="Cups" min="0.1" (change)="onChangeCups($event)" [disabled]="isStopwatchRunning">
+      <mat-hint align="start"><strong>1 cup = 180ml</strong> </mat-hint>
+    </mat-form-field>
+  </div>
+</div>
 
   <mat-grid-list [cols]="3">
     <mat-form-field class="input-select">
