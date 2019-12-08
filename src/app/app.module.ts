@@ -24,11 +24,11 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
-import { StopwatchComponent } from './stopwatch/stopwatch.component';
-import { TimerComponent } from './stopwatch/timer/timer.component';
+import { TimerComponent } from './coffee-recipe/recipe-execution/stopwatch/timer/timer.component';
 import { CoffeeRecipeComponent } from './coffee-recipe/coffee-recipe.component';
 import { RecipeSelectionComponent } from './coffee-recipe/recipe-selection/recipe-selection.component';
 import { RecipeExecutionComponent } from './coffee-recipe/recipe-execution/recipe-execution.component';
+import { StopwatchComponent } from './coffee-recipe/recipe-execution/stopwatch/stopwatch.component';
 
 @NgModule({
   declarations: [
