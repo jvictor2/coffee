@@ -73,7 +73,7 @@
 }
 
 .input-number {
-  width: 70%;
+  width: 100px;
 }
 
 .input-select {
@@ -82,7 +82,7 @@
 
 .preferences {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .mat-form-field-wrapper {

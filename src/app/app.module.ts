@@ -13,7 +13,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSliderModule } from '@angular/material/slider';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatListModule} from '@angular/material/list';
+import {MatStepperModule} from '@angular/material/stepper';
+
+
+
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
@@ -46,8 +53,12 @@ import { RecipeExecutionComponent } from './coffee-recipe/recipe-execution/recip
     MatInputModule,
     MatProgressBarModule,
     MatSelectModule,
+    MatSidenavModule,
     MatSliderModule,
     MatSnackBarModule,
+    MatToolbarModule,
+    MatListModule,
+    MatStepperModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

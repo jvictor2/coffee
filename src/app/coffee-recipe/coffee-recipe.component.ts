@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
+import {MediaMatcher} from '@angular/cdk/layout';
+
 import { Recipe } from '../core';
 
 @Component({
@@ -6,13 +8,20 @@ import { Recipe } from '../core';
   templateUrl: './coffee-recipe.component.html',
   styleUrls: ['./coffee-recipe.component.scss']
 })
-export class CoffeeRecipeComponent implements OnInit {
-  constructor() {}
+export class CoffeeRecipeComponent implements OnDestroy {
 
+  mobileQuery: MediaQueryList;
   recipe: Recipe;
   isStopwatchRunning = false;
 
-  ngOnInit() {}
+  private queryListener: () => void;
+
+  constructor(changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    this.queryListener = () => changeDetectorRef.detectChanges();
+    // tslint:disable-next-line: deprecation
+    this.mobileQuery.addListener(this.queryListener);
+  }
 
   onRecipeChange(recipe: Recipe) {
     this.recipe = recipe;
@@ -21,4 +30,10 @@ export class CoffeeRecipeComponent implements OnInit {
   onExecutionStatusChange(isRunning: boolean) {
     this.isStopwatchRunning = isRunning;
   }
+
+  ngOnDestroy(): void {
+    // tslint:disable-next-line: deprecation
+    this.mobileQuery.removeListener(this.queryListener);
+  }
+
 }

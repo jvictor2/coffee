@@ -1,8 +1,15 @@
 <h3>Get ready</h3>
 <div>
-  <p>
-    <span>Your coffee will be ready in <strong>{{ totalTime }}</strong> and requires <strong>{{ recipe.steps.length }} pours</strong>.</span>
-  </p>
+  <div style="display: flex; justify-content: space-around;">
+    <mat-form-field class="summary">
+        <input matInput value="{{ totalTime }}" placeholder="Ready in" disabled>
+        <!-- <mat-icon matSuffix>timer</mat-icon> -->
+      </mat-form-field>
+    <mat-form-field class="summary">
+        <input matInput value="{{ formattedSteps.length }}" placeholder="Pours" disabled>
+        <!-- <mat-icon matSuffix>timer</mat-icon> -->
+      </mat-form-field>
+  </div>
   <p>
   <li *ngFor="let step of formattedSteps; let i=index">
     <strong>{{ step.time }}</strong>:  {{ step.acc }}ml

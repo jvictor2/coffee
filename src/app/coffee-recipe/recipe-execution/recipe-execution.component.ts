@@ -34,7 +34,7 @@ export class RecipeExecutionComponent implements OnInit {
 
   ngOnInit() {
     const dur = DateTime.fromMillis(this.recipe.totalTime);
-    this.totalTime = `${dur.minute} minutes ${dur.second} seconds`;
+    this.totalTime = `${dur.minute}min ${dur.second}sec`;
     this.formattedSteps = this.humanizeSteps(this.recipe);
     this.currentStep = 1;
   }
