@@ -23,31 +23,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
-import { TimerComponent } from './coffee-recipe/recipe-execution/stopwatch/timer/timer.component';
 import { CoffeeRecipeComponent } from './coffee-recipe/coffee-recipe.component';
 import { RecipeSelectionComponent } from './coffee-recipe/recipe-selection/recipe-selection.component';
 import { RecipeExecutionComponent } from './coffee-recipe/recipe-execution/recipe-execution.component';
 import { StopwatchComponent } from './coffee-recipe/recipe-execution/stopwatch/stopwatch.component';
 
-import { NgCircleProgressModule } from 'ng-circle-progress';
-
-
 @NgModule({
   declarations: [
     AppComponent,
     StopwatchComponent,
-    TimerComponent,
     CoffeeRecipeComponent,
     RecipeSelectionComponent,
     RecipeExecutionComponent
   ],
   imports: [
-    NgCircleProgressModule.forRoot({radius: 100,
-      outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
-      outerStrokeColor: '#78C000',
-      innerStrokeColor: '#C7E596',
-      animationDuration: 300,}),
     NgbModule,
     BrowserAnimationsModule,
     BrowserModule,

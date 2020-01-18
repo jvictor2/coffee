@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 import {round} from 'lodash';
 import { Subject } from 'rxjs';
+import { DateTime, Duration } from 'luxon';
 
 const FIRST_PHASE_END = 45 * 1000; // 30 seconds % of 3
 const SECOND_PHASE_END = (60 + 30) * 1000; // 1:30
@@ -26,7 +27,11 @@ export class StopwatchComponent implements OnInit {
   progressBarBuffer = 0;
   progressBarMode = 'buffer';
 
+  // timer
+  isRunning: boolean;
   timerCommand: Subject<string> = new Subject();
+  timeLabel: string;
+  timerRef;
 
   @Output()
   counterEvent: EventEmitter<number> = new EventEmitter();
@@ -36,7 +41,18 @@ export class StopwatchComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.prepareInitialState();
+  }
+
+  private prepareInitialState() {
+    this.counter = 0;
+    this.isRunning = false;
+    this.timeLabel = '0:00:00';
+    this.progressBar = 0;
+    this.progressBarBuffer = 0;
+    clearInterval(this.timerRef);
+  }
 
   onCounterChange(count: number) {
     this.counter = count;
@@ -52,10 +68,28 @@ export class StopwatchComponent implements OnInit {
   onButtonClick(cmd: 'start' | 'stop' | 'reset') {
     this.timerCommand.next(cmd);
     this.isRunningEvent.emit(['start', 'stop'].includes(cmd) ? true : false);
+    this.handleButtonClick(cmd);
+  }
+
+  private handleButtonClick(cmd: 'start' | 'stop' | 'reset') {
+    if (cmd === 'start' && !this.isRunning) {
+      this.isRunning = true;
+      const startTime = DateTime.local().toMillis() - this.counter;
+      this.timerRef = setInterval(() => {
+        this.counter = DateTime.local().toMillis() - startTime;
+        this.timeLabel = Duration.fromMillis(this.counter).toFormat('h:mm:ss');
+      });
+      return;
+    }
+
+    if (cmd === 'stop' && this.isRunning) {
+      this.isRunning = false;
+      clearInterval(this.timerRef);
+      return;
+    }
+
     if (cmd === 'reset') {
-      this.progressBar = 0;
-      this.progressBarBuffer = 0;
-      this.counter = 0;
+      this.prepareInitialState();
     }
   }
 
