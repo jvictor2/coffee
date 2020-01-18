@@ -1,7 +1,6 @@
-<div class="recipe" [class.is-mobile]="mobileQuery.matches">
+<!-- <div class="recipe" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="toolbar">
-    <!-- <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button> -->
-    <h1 class="title">Coffee Helper</h1>
+    <h1 class="title px-4">Coffee Helper</h1>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
@@ -23,4 +22,19 @@
       </mat-card>
     </mat-sidenav-content>
   </mat-sidenav-container>
+</div> -->
+<nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mb-0 h1 title">Coffee Helper</span>
+</nav>
+
+<div class="container-fluid">
+  <div class="card my-2">
+    <div class="card-body">
+      <h5 class="card-title">4:6 Method</h5>
+      <m3j-recipe-selection (recipeEvent)="onRecipeChange($event)" [isStopwatchRunning]="isStopwatchRunning">
+      </m3j-recipe-selection>
+      <m3j-recipe-execution [recipe]="recipe" (isRunningEvent)="onExecutionStatusChange($event)">
+      </m3j-recipe-execution>
+    </div>
+  </div>
 </div>

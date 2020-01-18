@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
+import {round} from 'lodash';
 import { Subject } from 'rxjs';
 
 const FIRST_PHASE_END = 45 * 1000; // 30 seconds % of 3
@@ -40,7 +41,7 @@ export class StopwatchComponent implements OnInit {
   onCounterChange(count: number) {
     this.counter = count;
     this.counterEvent.emit(this.counter);
-    this.progressBar = this.getProgressPercentage(this.counter);
+    this.progressBar = round(this.getProgressPercentage(this.counter), 2);
     this.progressBarBuffer = this.getBufferTime(this.counter);
 
     if (this.counter >= FINAL_PHASE_END) {

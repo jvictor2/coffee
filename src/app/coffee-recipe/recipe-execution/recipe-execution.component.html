@@ -1,13 +1,11 @@
-<h3>Get ready</h3>
+<!-- <h3>Get ready</h3>
 <div>
   <div style="display: flex; justify-content: space-around;">
     <mat-form-field class="summary">
         <input matInput value="{{ totalTime }}" placeholder="Ready in" disabled>
-        <!-- <mat-icon matSuffix>timer</mat-icon> -->
       </mat-form-field>
     <mat-form-field class="summary">
         <input matInput value="{{ formattedSteps.length }}" placeholder="Pours" disabled>
-        <!-- <mat-icon matSuffix>timer</mat-icon> -->
       </mat-form-field>
   </div>
   <p>
@@ -20,4 +18,6 @@
   </p>
   <br />
   <m3j-stopwatch (counterEvent)="onCounterChange($event)" (isRunningEvent)="onIsRunningChange($event)"></m3j-stopwatch>
-</div>
+</div> -->
+
+<m3j-stopwatch (counterEvent)="onCounterChange($event)" (isRunningEvent)="onIsRunningChange($event)"></m3j-stopwatch>
