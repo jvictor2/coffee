@@ -1,8 +1,15 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {DateTime} from 'luxon';
+import {round} from 'lodash';
 
 import { Recipe } from '../../core';
 import { MatSnackBar } from '@angular/material';
+
+const FIRST_PHASE_END = 45 * 1000; // 30 seconds % of 3
+const SECOND_PHASE_END = (60 + 30) * 1000; // 1:30
+const THIRD_PHASE_END = (2 * 60 + 10) * 1000; // 2:10
+const FOURTH_PHASE_END = (2 * 60 + 45) * 1000; // 2:45
+const FINAL_PHASE_END = (3 * 60 + 30) * 1000; // 3:30
 
 @Component({
   selector: 'm3j-recipe-execution',
@@ -21,14 +28,18 @@ export class RecipeExecutionComponent implements OnInit {
     return this._recipe;
   }
 
+  stopwatchCommandEvent: EventEmitter<string> = new EventEmitter();
 
-  @Output()
-  isRunningEvent: EventEmitter<boolean> = new EventEmitter();
-
-  currentStep: number;
   totalTime: string;
   formattedSteps: Array<{acc: number, time: string}> = [];
   executedSteps: Array<number> = [];
+
+  progressBar = 0;
+  progressBarBuffer = 0;
+  progressBarMode = 'buffer';
+
+  isRunning = false;
+  currentStep = 0;
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -36,10 +47,13 @@ export class RecipeExecutionComponent implements OnInit {
     const dur = DateTime.fromMillis(this.recipe.totalTime);
     this.totalTime = `${dur.minute}min ${dur.second}sec`;
     this.formattedSteps = this.humanizeSteps(this.recipe);
-    this.currentStep = 1;
+    this.progressBarBuffer = 0;
+    this.progressBar = 0;
+    this.currentStep = 0;
   }
 
   onCounterChange(counter: number) {
+    this.updateProgressBar(counter);
     for (const step of this.recipe.steps) {
       const shouldBeRunning = step.startsAt <= counter && step.endsAt > counter;
       if (shouldBeRunning && !this.executedSteps.includes(step.step)) {
@@ -50,8 +64,38 @@ export class RecipeExecutionComponent implements OnInit {
     }
   }
 
-  onIsRunningChange(clockRunning: boolean) {
-    this.isRunningEvent.emit(clockRunning);
+  onClickStopwatchCmd(cmd: 'start' | 'stop' | 'reset') {
+    this.stopwatchCommandEvent.emit(cmd);
+    this.isRunning = cmd === 'start';
+    if (cmd === 'reset') {
+      this.ngOnInit();
+    }
+    console.log(this.recipe);
+  }
+
+  private updateProgressBar(counter: number) {
+    this.progressBar = round(this.getProgressPercentage(counter), 2);
+    this.progressBarBuffer = this.getBufferTime(counter);
+  }
+
+  private getBufferTime(progress: number) {
+    if (progress < FIRST_PHASE_END) {
+      return this.getProgressPercentage(FIRST_PHASE_END);
+    }
+    if (progress < SECOND_PHASE_END) {
+      return this.getProgressPercentage(SECOND_PHASE_END);
+    }
+    if (progress < THIRD_PHASE_END) {
+      return this.getProgressPercentage(THIRD_PHASE_END);
+    }
+    if (progress < FOURTH_PHASE_END) {
+      return this.getProgressPercentage(FOURTH_PHASE_END);
+    }
+    return this.getProgressPercentage(FINAL_PHASE_END);
+  }
+
+  private getProgressPercentage(counterMs: number) {
+    return (counterMs / FINAL_PHASE_END) * 100;
   }
 
   private humanizeSteps(recipe: Recipe) {

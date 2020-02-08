@@ -1,23 +1,45 @@
-<!-- <h3>Get ready</h3>
-<div>
-  <div style="display: flex; justify-content: space-around;">
-    <mat-form-field class="summary">
-        <input matInput value="{{ totalTime }}" placeholder="Ready in" disabled>
-      </mat-form-field>
-    <mat-form-field class="summary">
-        <input matInput value="{{ formattedSteps.length }}" placeholder="Pours" disabled>
-      </mat-form-field>
+<span>Once you are ready, click start and the app will give you all instructions</span>
+<div class="d-flex justify-content-center flex-row">
+  <m3j-stopwatch (counterEvent)="onCounterChange($event)" [stopwatchCommand]="stopwatchCommandEvent"></m3j-stopwatch>
+</div>
+<mat-progress-bar
+  [mode]="progressBarMode"
+  [value]="progressBar"
+  [bufferValue]="progressBarBuffer"
+>
+  >
+</mat-progress-bar>
+<br>
+<div class="d-flex flex-column">
+  <div
+    class="d-flex align-items-center justify-content-center font-weight-light border border-primary rounded-pill my-1"
+    *ngFor="let step of formattedSteps; let i=index"
+    [ngClass]="{'processing': currentStep  === i + 1, 'done': currentStep > i + 1  }">
+      <div class="d-flex align-items-center">
+        <div>{{step.time}}</div>
+        <div>{{step.acc}} ml</div>
+        <div>
+          <div class="spinner-border spinner-border-sm text-light ml-2 " role="status" *ngIf="currentStep === i + 1 && isRunning">
+          </div>
+        </div>
+        <div>
+          <fa-icon icon="check-circle" class="text-light ml-2" *ngIf="currentStep > i + 1"></fa-icon>
+        </div>
+      </div>
   </div>
-  <p>
-  <li *ngFor="let step of formattedSteps; let i=index">
-    <strong>{{ step.time }}</strong>:  {{ step.acc }}ml
-  </li>
-  </p>
-  <p>
-    <span>Click start when you are ready. The stopwatch will notify you when to pour boiling water.</span>
-  </p>
-  <br />
-  <m3j-stopwatch (counterEvent)="onCounterChange($event)" (isRunningEvent)="onIsRunningChange($event)"></m3j-stopwatch>
-</div> -->
+</div>
+<br>
+<div class="card-footer">
 
-<m3j-stopwatch (counterEvent)="onCounterChange($event)" (isRunningEvent)="onIsRunningChange($event)"></m3j-stopwatch>
+  <div class="d-flex justify-content-between flex-row">
+    <button class="btn btn-primary text-uppercase" (click)="onClickStopwatchCmd('start')">
+      start
+    </button>
+    <button class="btn btn-light text-uppercase" (click)="onClickStopwatchCmd('stop')">
+      stop
+    </button>
+    <button class="btn btn-light text-uppercase" (click)="onClickStopwatchCmd('reset')">
+      reset
+    </button>
+</div>
+</div>

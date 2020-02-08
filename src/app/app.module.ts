@@ -28,18 +28,24 @@ import { RecipeSelectionComponent } from './coffee-recipe/recipe-selection/recip
 import { RecipeExecutionComponent } from './coffee-recipe/recipe-execution/recipe-execution.component';
 import { StopwatchComponent } from './coffee-recipe/recipe-execution/stopwatch/stopwatch.component';
 
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCheckCircle, faCoffee } from '@fortawesome/free-solid-svg-icons';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    StopwatchComponent,
     CoffeeRecipeComponent,
+    RecipeExecutionComponent,
     RecipeSelectionComponent,
-    RecipeExecutionComponent
+    StopwatchComponent,
   ],
   imports: [
     NgbModule,
     BrowserAnimationsModule,
     BrowserModule,
+    FontAwesomeModule,
     HttpClientModule,
     MatButtonModule,
     MatCardModule,
@@ -61,4 +67,8 @@ import { StopwatchComponent } from './coffee-recipe/recipe-execution/stopwatch/s
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private library: FaIconLibrary) {
+    library.addIcons(faCheckCircle, faCoffee);
+  }
+}

@@ -33,6 +33,7 @@
       <h5 class="card-title">4:6 Method</h5>
       <m3j-recipe-selection (recipeEvent)="onRecipeChange($event)" [isStopwatchRunning]="isStopwatchRunning">
       </m3j-recipe-selection>
+      <br>
       <m3j-recipe-execution [recipe]="recipe" (isRunningEvent)="onExecutionStatusChange($event)">
       </m3j-recipe-execution>
     </div>

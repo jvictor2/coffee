@@ -1,3 +1,4 @@
+<span>Please select your preferences:</span>
 <div class="d-flex justify-content-between">
   <div class="d-flex flex-column align-items-center px-1">
     <input class="form-control" type="number" value="{{ coffeeGround }}" placeholder="Coffee Ground" min="1" (change)="onChangeCoffeeGround($event)" [disabled]="isStopwatchRunning">
@@ -12,6 +13,8 @@
     <span class="label">Cups</span>
   </div>
 </div>
+<!--<fa-icon [icon]="['fas', 'coffee']"></fa-icon>  -->
+
 
 <!-- flavor preferences -->
 <!--

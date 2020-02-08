@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 import {round} from 'lodash';
 
 import { RecipeService, Recipe, RecipeMethod } from '../../core';

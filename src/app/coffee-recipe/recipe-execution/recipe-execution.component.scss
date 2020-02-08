@@ -1,32 +1,9 @@
-.steps {
-  display: flex;
-  align-items: center;
-
-  .processing {
-    // background-color: #492201;
-    // color: white;
-    animation: blinker 2s linear infinite;
-  }
-
-  .scheduled {
-    // background-color: #492201;
-    // color: white;
-    // background-color: rgb(196, 196, 196);
-    opacity: 0.5;
-  }
-
-  .done {
-    // background-color: #3e1c00;
-    // color: white;
-  }
-
-  @keyframes blinker {
-    50% {
-      opacity: 0;
-    }
-  }
+.processing {
+  background-color: #007bff;
 }
 
-.summary {
-  width: 105px;
+.done {
+  background-color: #28a745;
+  border-color: #28a745 !important;
 }
+
