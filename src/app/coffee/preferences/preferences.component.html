@@ -1,0 +1,16 @@
+<div class="form-group row">
+  <label class="col-3">Preferences</label>
+
+</div>
+<div class="form-group row">
+    <label for="cups" class="col-3">Cups</label>
+    <div class="col-9">
+      <input #range id="cups" type="range" class="form-control-range" step="1" min="0" max="10" (change)="onChangeCups(range.value)">
+    </div>
+</div>
+<div class="form-group row">
+  <label for="water" class="col-3">Boiling water</label>
+  <div class="col-9">
+    <input id="water" type="number" class="form-control-range" value="{{preferences.boilingWater}}" >
+  </div>
+</div>

@@ -38,7 +38,7 @@ export class StopwatchComponent implements OnInit {
     this.prepareInitialState();
     this.stopwatchCommand.subscribe(cmd => {
       this.handleButtonClick(cmd as any);
-    })
+    });
   }
 
   private prepareInitialState() {
