@@ -13,10 +13,10 @@ export interface IRecipeStep {
   endsAt: number;
 }
 
-export interface IClock {
-  running: boolean;
+export interface IStopwatch {
   currentTime: number;
-  currentStep?: IRecipeStep;
+  isRunning: boolean;
+  // currentStep?: IRecipeStep;
 }
 
 export enum ClockCommand {
