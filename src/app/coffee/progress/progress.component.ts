@@ -8,11 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class ProgressComponent implements OnInit {
 
   steps: Array<any> = [
-    {id: 1},
-    {id: 2},
-    {id: 3},
-    {id: 4},
-    {id: 5},
+    {id: 1, text: '0ml -> + 10ml -> 10ml'},
+    {id: 2, text: '10ml -> + 100ml -> 110ml'},
+    {id: 3, text: 'Something here'},
+    {id: 4, text: 'Something here'},
+    {id: 5, text: 'Something here'},
   ];
 
   constructor() { }

@@ -1,3 +1,43 @@
-.step {
-  width: 100px;
+.rounded {
+  border-radius: 9px !important;
+  line-height: normal;
+  font-size: medium;
 }
+
+.done {
+  color: rgba(25, 59, 104, 0.2);
+  box-shadow: none !important; // 0 0.2rem 0.2rem rgba(31, 169, 255, 0.3) !important;
+  border: 1px solid rgba(25, 59, 104, 0.1);
+  background-color: rgba(20, 165, 255, 0.1) !important;
+  font-weight: 400;
+}
+
+.active {
+  // color: '#1479ff50'; // rgba(20, 165, 255);
+  color: rgba(20, 165, 255);
+  box-shadow: 0 0.5rem 0.5rem rgba(20, 165, 255, 0.3) !important;
+  border: 2px solid rgba(20, 165, 255);
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 1) !important;
+}
+
+.pending {
+  box-shadow: none !important;
+  color: rgba(25, 59, 104, 0.2);
+  border: 1px solid rgba(25, 59, 104, 0.1);
+  background-color: transparent !important;
+  font-weight: 400;
+}
+
+
+// 1479ff
+// 1479ff 0.1
+
+// 193b68
+// 193b68 0.1
+
+// 14d2ff
+
+// 14a5ff
+
+// 14ebff

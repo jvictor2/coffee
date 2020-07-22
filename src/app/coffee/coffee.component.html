@@ -1,16 +1,20 @@
 <div class="container">
-  <div class="d-flex flex-column card">
-    <!-- <div class="fixed-top"> -->
-      <m3j-clock [stopwatch]="stopwatch" ></m3j-clock>
+  <div class="d-flex flex-column">
+    <div class="rounded shadow bg-white mt-3">
+      <m3j-clock [stopwatch]="stopwatch"></m3j-clock>
       <m3j-progress></m3j-progress>
       <!-- <m3j-preferences></m3j-preferences> -->
-      <m3j-recipe></m3j-recipe>
-    <!-- </div> -->
-    <div class="fixed-bottom">
-      <!-- Bottom text -->
-      <!-- <m3j-preferences></m3j-preferences> -->
-      <!-- <button (click)="openBottomSheet()">Open file</button> -->
-      <m3j-toolbar (clockCommand)="onClockCommand($event)"></m3j-toolbar>
     </div>
+    <div class="rounded shadow bg-white mt-3">
+      <m3j-recipe></m3j-recipe>
+    </div>
+  </div>
+  <!-- <div class="fixed-top"> -->
+  <!-- </div> -->
+  <div class="fixed-bottom">
+    <!-- Bottom text -->
+    <!-- <m3j-preferences></m3j-preferences> -->
+    <!-- <button (click)="openBottomSheet()">Open file</button> -->
+    <m3j-toolbar (clockCommand)="onClockCommand($event)"></m3j-toolbar>
   </div>
 </div>

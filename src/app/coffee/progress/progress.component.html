@@ -1,5 +1,9 @@
 <div class="d-flex justify-content-center flex-column align-items-center">
-  <div *ngFor="let step of steps" class="card step my-1">
-    {{step.id}}
+  <div *ngFor="let step of steps"
+    class="rounded bg-white w-50 mb-2 text-center"
+    [ngClass]="{'done': true, 'active': step.id === 3, 'pending': step.id > 3}">
+    <span>
+      {{step.id}} {{step.text}}
+    </span>
   </div>
 </div>
