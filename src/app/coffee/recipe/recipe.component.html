@@ -1,1 +1,32 @@
-<input #range id="cups" type="range" class="form-control-range" step="1" min="0" max="10">
+<div class="d-flex justify-content-center flex-column align-items-center m-3">
+  <h5 class="brown-text">How much coffee?</h5>
+  <input #range id="cups" type="range" class="range" step="1" min="1" max="10">
+
+  <div class="d-flex justify-content-around my-3">
+    <div class="recipe-item">
+      <span class="amount">15</span>
+      <span class="description">Cups</span>
+    </div>
+    <div class="recipe-item mx-4">
+      <span class="amount">50</span>
+      <span class="description">Coffee ground</span>
+    </div>
+    <div class="recipe-item">
+      <span class="amount">350</span>
+      <span class="description">Boiling water</span>
+    </div>
+  </div>
+
+  <mat-button-toggle-group [value]="acidity">
+    <mat-button-toggle value="acid">Acidity</mat-button-toggle>
+    <mat-button-toggle value="balanced">Balanced</mat-button-toggle>
+    <mat-button-toggle value="sweet">Sweetness</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  <mat-button-toggle-group [value]="intensity" class="mt-2">
+    <mat-button-toggle value="light">Light</mat-button-toggle>
+    <mat-button-toggle value="balanced">Balanced</mat-button-toggle>
+    <mat-button-toggle value="intense">Intense</mat-button-toggle>
+  </mat-button-toggle-group>
+
+</div>

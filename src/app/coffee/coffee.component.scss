@@ -1,5 +1,34 @@
-// .container {
-//   min-height: 100%;
-//   height: 100vh;
-//   background-color: gray;
-// }
+@import '../../styles.scss';
+
+.text-light {
+  color: $white;
+}
+.rounded {
+  border-radius: 25px !important;
+}
+
+.navbar {
+  background-color: $brown;
+}
+
+::ng-deep {
+  .mat-tab-label-container {
+    background-color: $brown !important;
+  }
+
+  .mat-ink-bar {
+    background-color: $light-brown !important;
+  }
+
+  .mat-tab-label-content {
+    color: $white;
+  }
+
+  .mat-tab-header-pagination {
+    background-color: $brown;
+  }
+
+  .mat-tab-header-pagination-chevron {
+    border-color: $light-brown;
+  }
+}

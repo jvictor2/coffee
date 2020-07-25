@@ -13,7 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // import { MatInputModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatBottomSheetModule } from '@angular/material';
+import { MatBottomSheetModule, MatTabsModule, MatButtonToggleModule, MatButtonModule } from '@angular/material';
 // import { MatSelectModule } from '@angular/material/select';
 // import { MatSidenavModule } from '@angular/material/sidenav';
 // import { MatSliderModule } from '@angular/material/slider';
@@ -37,8 +37,6 @@ import { ClockComponent } from './coffee/clock/clock.component';
 import { ProgressComponent } from './coffee/progress/progress.component';
 import { RecipeComponent } from './coffee/recipe/recipe.component';
 import { ToolbarComponent } from './coffee/toolbar/toolbar.component';
-
-
 
 @NgModule({
   entryComponents: [PreferencesComponent],
@@ -72,9 +70,12 @@ import { ToolbarComponent } from './coffee/toolbar/toolbar.component';
     // MatSelectModule,
     // MatSidenavModule,
     // MatSliderModule,
+    MatButtonModule,
     MatBottomSheetModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatButtonToggleModule,
     // MatToolbarModule,
     // MatListModule,
     // MatStepperModule

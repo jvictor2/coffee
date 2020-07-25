@@ -1,20 +1,38 @@
-<div class="container">
-  <div class="d-flex flex-column">
-    <div class="rounded shadow bg-white mt-3">
+<nav class="navbar navbar-light">
+  <div class="navbar-brand d-flex justify-content-center">
+    <span class="text-light">Coffee Helper</span>
+  </div>
+</nav>
+
+<mat-tab-group mat-align-tabs="center" class="test">
+  <mat-tab label="4:6">
+      <m3j-recipe></m3j-recipe>
+    </mat-tab>
+    <mat-tab label="French Press">
+      <m3j-recipe></m3j-recipe>
+  </mat-tab>
+</mat-tab-group>
+
+<div class="d-flex justify-content-center">
+  <button mat-flat-button color="primary">Go!</button>
+</div>
+
+<!-- <div class="container"> -->
+  <!-- <div class="d-flex flex-column"> -->
+    <!-- <div class="rounded shadow bg-white mt-3">
       <m3j-clock [stopwatch]="stopwatch"></m3j-clock>
       <m3j-progress></m3j-progress>
-      <!-- <m3j-preferences></m3j-preferences> -->
-    </div>
-    <div class="rounded shadow bg-white mt-3">
+    </div> -->
+    <!-- <div class="rounded shadow bg-white mt-3">
       <m3j-recipe></m3j-recipe>
     </div>
-  </div>
+  </div> -->
   <!-- <div class="fixed-top"> -->
   <!-- </div> -->
-  <div class="fixed-bottom">
+  <!-- <div class="fixed-bottom"> -->
     <!-- Bottom text -->
     <!-- <m3j-preferences></m3j-preferences> -->
     <!-- <button (click)="openBottomSheet()">Open file</button> -->
-    <m3j-toolbar (clockCommand)="onClockCommand($event)"></m3j-toolbar>
-  </div>
-</div>
+    <!-- <m3j-toolbar (clockCommand)="onClockCommand($event)"></m3j-toolbar>
+  </div> -->
+<!-- </div> -->
