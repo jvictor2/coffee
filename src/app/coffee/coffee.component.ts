@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatBottomSheet } from '@angular/material';
-import { PreferencesComponent } from './preferences/preferences.component';
 import { ClockCommand, IStopwatch } from './coffee.model';
 import { ClockService } from '../core';
+import { ClockComponent } from './clock/clock.component';
 import { Subscription } from 'rxjs';
+import { MatBottomSheet } from '@angular/material';
 
 @Component({
   selector: 'm3j-coffee',
@@ -17,16 +17,18 @@ export class CoffeeComponent implements OnInit {
   clockCommand: ClockCommand;
 
   constructor(
-    private _bottomSheet: MatBottomSheet,
+    private clockBottomSheet: MatBottomSheet,
     private readonly clockService: ClockService,
   ) { }
 
   ngOnInit() {
     this.subscription.add(this.stopwatchSubscription());
+    this.openBottomSheet();
   }
 
   openBottomSheet(): void {
-    this._bottomSheet.open(PreferencesComponent);
+    this.clockService.start();
+    this.clockBottomSheet.open(ClockComponent);
   }
 
   onClockCommand(command: ClockCommand) {

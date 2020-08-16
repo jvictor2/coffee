@@ -26,7 +26,8 @@ export class ClockService {
         currentTime: this.counter,
         isRunning: this.isRunning,
       });
-    });
+    },
+    1000);
   }
 
   stop() {

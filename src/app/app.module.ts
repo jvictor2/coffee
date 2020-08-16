@@ -3,23 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// import { MatButtonModule } from '@angular/material/button';
-// import { MatCardModule } from '@angular/material/card';
-// import { MatChipsModule } from '@angular/material/chips';
-// import { MatDividerModule } from '@angular/material/divider';
-// import { MatFormFieldModule } from '@angular/material/form-field';
-// import { MatGridListModule } from '@angular/material/grid-list';
-// import { MatIconModule } from '@angular/material/icon';
-// import { MatInputModule } from '@angular/material';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatBottomSheetModule, MatTabsModule, MatButtonToggleModule, MatButtonModule } from '@angular/material';
-// import { MatSelectModule } from '@angular/material/select';
-// import { MatSidenavModule } from '@angular/material/sidenav';
-// import { MatSliderModule } from '@angular/material/slider';
-// import { MatToolbarModule } from '@angular/material/toolbar';
-// import { MatListModule } from '@angular/material/list';
-// import { MatStepperModule } from '@angular/material/stepper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -39,46 +25,32 @@ import { RecipeComponent } from './coffee/recipe/recipe.component';
 import { ToolbarComponent } from './coffee/toolbar/toolbar.component';
 
 @NgModule({
-  entryComponents: [PreferencesComponent],
+  entryComponents: [ClockComponent],
   declarations: [
     AppComponent,
+    ClockComponent,
+    CoffeeComponent,
     CoffeeRecipeComponent,
+    PreferencesComponent,
+    ProgressComponent,
+    RecipeComponent,
     RecipeExecutionComponent,
     RecipeSelectionComponent,
     StopwatchComponent,
-    CoffeeComponent,
-    PreferencesComponent,
-    ClockComponent,
-    ProgressComponent,
-    RecipeComponent,
     ToolbarComponent,
   ],
   imports: [
-    NgbModule,
     BrowserAnimationsModule,
     BrowserModule,
     FontAwesomeModule,
     HttpClientModule,
-    // MatButtonModule,
-    // MatCardModule,
-    // MatChipsModule,
-    // MatDividerModule,
-    // MatFormFieldModule,
-    // MatGridListModule,
-    // MatIconModule,
-    // MatInputModule,
-    // MatSelectModule,
-    // MatSidenavModule,
-    // MatSliderModule,
-    MatButtonModule,
     MatBottomSheetModule,
+    MatButtonModule,
+    MatButtonToggleModule,
     MatProgressBarModule,
     MatSnackBarModule,
     MatTabsModule,
-    MatButtonToggleModule,
-    // MatToolbarModule,
-    // MatListModule,
-    // MatStepperModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
